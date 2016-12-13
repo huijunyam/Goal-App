@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Goal</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if flash[:notices] %>
+      <% flash[:notices].each do |msg| %>
+        <p><b><%= msg %></b></p>
+      <% end %>
+  <% end %>
+
+    <% if current_user %>
+      <p>Welcome <%= current_user_name %></p>
+      <%= button_to "Log Out", session_url, method: :delete %>
+<%= yield %>
+
+</body>
+</html>

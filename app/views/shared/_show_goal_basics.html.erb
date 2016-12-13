@@ -1,0 +1,15 @@
+<% privacy = (goal.private) ? "private" : "public" %>
+<% completedness = (goal.completed) ? "Complete" : "Ongoing"%>
+
+<li>
+  <%= link_to goal.title, goal_url(goal) %>
+  <p><i><%= privacy %></i></p>
+  <p><i><%= completedness %></i></p>
+  <br>
+
+  <% if current_user && current_user.id == goal.user_id %>
+    <%= render "shared/goal_complete_button", goal: goal %>
+    <br>
+    <%= button_to "delete '#{goal.title}' goal", goal_url(goal), method: :delete %>
+  <% end %>
+</li>
